@@ -37,7 +37,7 @@ public class CommandLineInterface {
             }
 
             MultiplayerGameRunner runner = new MultiplayerGameRunner();
-
+            runner.setLeagueLevel(2);
             Field getGameResult = MultiplayerGameRunner.class.getSuperclass().getDeclaredField("gameResult");
             getGameResult.setAccessible(true);
             GameResultDto result = (GameResultDto) getGameResult.get(runner);

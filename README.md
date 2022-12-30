@@ -1,11 +1,15 @@
 # FallChallenge2022 - KeepOffTheGrass
 
-Keep Off The Grass!
+Fork of the Codingame challenge KeepOffTheGrass https://github.com/CodinGame/FallChallenge2022-KeepOffTheGrass
 
-Source code for CodinGame's Fall Challenge 2022 event.
+Allow to benchmark a bot against a set of reference bots, with fixed seeds, and for each seed both start positions.
 
-https://www.codingame.com/contests/fall-challenge-2022/
+requires :
+ - current bot to be compiled in `../bots/current`
+ - reference bots compiled in `../bechmark/`
 
-Community starter AIs are located here:
 
-https://github.com/CodinGame/FallChallenge2022-KeepOffTheGrass/tree/main/starterAIs
+Install and run :
+```bash
+mvn package && java -jar target/grass-1.0-SNAPSHOT.jar
+```
