@@ -47,11 +47,11 @@ public class GrassBenchmark {
                 gameRunner.addAgent("../bots/current", "current");
                 gameRunner.setLeagueLevel(2);
                 res = gameRunner.simulate();
-                myScore = res.scores.get(0);
-                oppScore = res.scores.get(1);
+                myScore = res.scores.get(1);
+                oppScore = res.scores.get(0);
 
                 title = f + "/current";
-                summary = String.format("  %1$-40s : %2$3d / %3$3d", title, myScore, oppScore);
+                summary = String.format("  %1$-40s : %2$3d / %3$3d", title, oppScore, myScore);
 
                 totalNbGames++;
                 if (myScore >= oppScore){

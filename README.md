@@ -5,7 +5,7 @@ Fork of the Codingame challenge KeepOffTheGrass https://github.com/CodinGame/Fal
 Allow to benchmark a bot against a set of reference bots, with fixed seeds, and for each seed both start positions.
 
 requires :
- - current bot to be compiled in `../bots/current`
+ - current bot to be compiled as `../bots/current`
  - reference bots compiled in `../bechmark/`
 
 
