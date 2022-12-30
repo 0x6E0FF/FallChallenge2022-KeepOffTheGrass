@@ -8,18 +8,24 @@ import com.google.common.io.Files;
 public class GrassBenchmark {
 
     static final long[] seeds = {
-        1222614572458913500l,
+        1222614572458913500l, // big open
+        -2938893172348585500l, // small open
+        1004131836272785900l, // big cluttered
+        3769823645393793000l, // small cluttered
     };
     public static void main(String[] args){
 
         File dir = new File("../benchmark");
         int totalNbGames = 0;
         int totalWin = 0;
-        for (long seed : seeds){
-            System.out.println("\u001B[0mseed " + seed + ":");
-            for (String f : dir.list()) {
-                if (f.contains(".cpp")) continue;
-                MultiplayerGameRunner gameRunner = new MultiplayerGameRunner();
+        MultiplayerGameRunner gameRunner = new MultiplayerGameRunner();
+
+        for (String f : dir.list()) {
+            if (f.contains(".cpp")) continue;
+            
+            System.out.println("\u001B[0m " + f + " : ");
+            for (long seed : seeds){    
+                gameRunner = new MultiplayerGameRunner();
                 gameRunner.setSeed(seed);
                 gameRunner.addAgent("../bots/current", "current");
                 gameRunner.addAgent("../benchmark/" + f, "x");
@@ -28,16 +34,16 @@ public class GrassBenchmark {
                 int myScore = res.scores.get(0);
                 int oppScore = res.scores.get(1);
 
-                String title = "current/" + f;
-                String summary = String.format("  %1$-40s : %2$3d / %3$3d", title, myScore, oppScore);
+                String title = seed + "";
+                String summary = String.format("%1$-30s : %2$3d / %3$3d", title, myScore, oppScore);
 
                 totalNbGames++;
                 if (myScore >= oppScore){
-                    System.out.println("\u001B[32m" + summary);
+                    System.out.println("  \u001B[32m" + summary + " - W");
                     totalWin++;
                 }
                 else {
-                    System.out.println("\u001B[31m" + summary);
+                    System.out.println("  \u001B[31m" + summary + " - L");
                 }
 
                 
@@ -50,16 +56,16 @@ public class GrassBenchmark {
                 myScore = res.scores.get(1);
                 oppScore = res.scores.get(0);
 
-                title = f + "/current";
-                summary = String.format("  %1$-40s : %2$3d / %3$3d", title, oppScore, myScore);
+                title = seed + " (swapped)";
+                summary = String.format("%1$-30s : %2$3d / %3$3d", title, myScore, oppScore);
 
                 totalNbGames++;
                 if (myScore >= oppScore){
-                    System.out.println("\u001B[32m" + summary);
+                    System.out.println("  \u001B[32m" + summary + " - W");
                     totalWin++;
                 }
                 else {
-                    System.out.println("\u001B[31m" + summary);
+                    System.out.println("  \u001B[31m" + summary + " - L");
                 }
             }
         }
